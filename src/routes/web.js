@@ -1,38 +1,40 @@
-var express = require('express');
-var userController = require('../controllers/userController');
-var adminController = require('../controllers/adminController');
-var staffController = require('../controllers/staffController');
-var { verifyToken, verifyAdmin, verifyStaff } = require('../middleware/auth');
+const express = require('express');
+const userController = require('../controllers/userController');
+const adminController = require('../controllers/adminController');
+const staffController = require('../controllers/staffController');
+const { verifyToken, verifyAdmin, verifyStaff } = require('../middleware/auth');
+
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-    //user api
-    router.post("/api/login", userController.handleLogin)
-    router.post("/api/register", userController.handleRegister)
-    router.post("/api/createNewRequest", verifyToken, userController.handleCreateNewRequest);
+    // user api
+    router.post("/login", userController.handleLogin);
+    router.post("/register", userController.handleRegister);
+    router.post("/createNewRequest", verifyToken, userController.handleCreateNewRequest);
 
-    //staff api
-    router.put("/api/changeProcess/:id", verifyToken, staffController.handleChangeProcess);
-    router.put("/api/valuation/:id", verifyToken, staffController.handleValuation);
+    // staff api
+    router.put("/changeProcess/:id", verifyToken, staffController.handleChangeProcess);
+    router.put("/valuation/:id", verifyToken, staffController.handleValuation);
 
-    //admin api
-    router.get("/api/users/:id", verifyToken, adminController.handleGetUserById);
-    router.get("/api/users", verifyToken, adminController.handleGetAllUsers);
-    router.get("/api/countUser", verifyToken, adminController.handleCountUser);
-    router.post("/api/users", verifyToken, adminController.handleCreateNewUser);
-    router.put("/api/users", verifyToken, adminController.handleUpdateUser);
-    router.put("/api/deleteUser", verifyToken, adminController.handleDeleteUser);
-    router.get("/api/diamonds", verifyToken, adminController.handleGetDiamonds);
-    router.get("/api/countDiamond", verifyToken, adminController.handleCountDiamond);
-    router.get("/api/requests", verifyToken, adminController.handleGetRequests);
-    router.get("/api/requests/:id", verifyToken, adminController.handleGetRequestById);
-    router.get("/api/countRequest", verifyToken, adminController.handleCountRequest);
-    router.get("/api/results", verifyToken, adminController.handleGetResults);
-    router.get("/api/profit", verifyToken, adminController.handleGetProfit);
-    router.get("/", (req,res) => {
-        res.send('😀😃😄😁😆😅🤣😂')
+    // admin api
+    router.get("/users/:id", verifyToken, adminController.handleGetUserById);
+    router.get("/users", verifyToken, adminController.handleGetAllUsers);
+    router.get("/countUser", verifyToken, adminController.handleCountUser);
+    router.post("/users", verifyToken, adminController.handleCreateNewUser);
+    router.put("/users", verifyToken, adminController.handleUpdateUser);
+    router.put("/deleteUser", verifyToken, adminController.handleDeleteUser);
+    router.get("/diamonds", verifyToken, adminController.handleGetDiamonds);
+    router.get("/countDiamond", verifyToken, adminController.handleCountDiamond);
+    router.get("/requests", verifyToken, adminController.handleGetRequests);
+    router.get("/requests/:id", verifyToken, adminController.handleGetRequestById);
+    router.get("/countRequest", verifyToken, adminController.handleCountRequest);
+    router.get("/results", verifyToken, adminController.handleGetResults);
+    router.get("/profit", verifyToken, adminController.handleGetProfit);
+    router.get("/", (req, res) => {
+        res.send('😀😃😄😁😆😅🤣😂');
     });
-    return app.use("/", router);
+
+    return app.use("/api", router);
 };
 
 module.exports = initWebRoutes;

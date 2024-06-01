@@ -23,7 +23,7 @@ app.use(
 );
 app.use(cookieParser());
 
-dbConnect();
+dbConnect;
 initWebRoutes(app);
 
 app.listen(PORT, () => {

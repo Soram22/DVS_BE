@@ -1,5 +1,5 @@
 var bcrypt = require('bcryptjs');
-var { connectDB, sql } = require('../config/connectDb');
+const connectDb = require('../config/connectDb');
 const salt = bcrypt.genSaltSync(10);
 require('dotenv').config();
 const jwt = require('jsonwebtoken');

@@ -77,7 +77,7 @@ let handleUserRegister = (username, password, firstName, lastName, email, phone)
                     message: 'Password must be at least 6 characters long.'
                 });
             } else {
-                const pool = await connectDB;
+                const pool = await sql.connect(config);
                 const hashedPassword = await bcrypt.hash(password, 10); // Hash the password using bcrypt
 
                 const request = pool.request();
@@ -118,7 +118,7 @@ let hashUserPassword = (password) => {
 let createNewRequest = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const pool = await connectDB;
+            const pool = await sql.connect(config);
             const request = pool.request();
             request.input('proportions', sql.NVarChar, data.proportions);
             request.input('diamondOrigin', sql.NVarChar, data.diamondOrigin);

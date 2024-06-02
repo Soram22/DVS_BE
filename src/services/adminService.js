@@ -1,6 +1,5 @@
 var bcrypt = require('bcryptjs');
 var config = require('../config/dbconfig');
-var config = require('../config/dbconfig');
 const salt = bcrypt.genSaltSync(10);
 
 let checkUserName = (username) => {

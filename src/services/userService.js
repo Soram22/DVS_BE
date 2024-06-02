@@ -1,14 +1,14 @@
 var bcrypt = require('bcryptjs');
-const connectDb = require('../config/connectDb');
 const salt = bcrypt.genSaltSync(10);
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+var config = require('../config/dbconfig');
 
 let handleUserLogin = (username, password) => {
     return new Promise(async (resolve, reject) => {
         try {
             let userData = {};
-            var pool = await connectDB;
+            const pool = await sql.connect(config);
             let isExist = await checkUserName(username);
             if (isExist) {
                 let user = await pool.request()
@@ -50,7 +50,7 @@ let handleUserLogin = (username, password) => {
 let checkUserName = (username) => {
     return new Promise(async (resolve, reject) => {
         try {
-            var pool = await connectDB;
+            const pool = await sql.connect(config);
             let user = await pool.request()
                 .input('username', sql.NVarChar, username)
                 .query("SELECT username FROM Account WHERE username = @username");

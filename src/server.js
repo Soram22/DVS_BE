@@ -4,7 +4,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const initWebRoutes = require('./routes/web');
-const { dbConnect } = require('./config/connectDb');
 
 dotenv.config();
 
@@ -23,7 +22,6 @@ app.use(
 );
 app.use(cookieParser());
 
-dbConnect;
 initWebRoutes(app);
 
 app.listen(PORT, () => {

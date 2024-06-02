@@ -30,7 +30,7 @@ let initWebRoutes = (app) => {
     router.get("/countRequest", verifyToken, adminController.handleCountRequest);
     router.get("/results", verifyToken, adminController.handleGetResults);
     router.get("/profit", verifyToken, adminController.handleGetProfit);
-    router.get("/", (req, res) => {
+    router.get("/icon", (req, res) => {
         res.send('😀😃😄😁😆😅🤣😂');
     });
 

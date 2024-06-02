@@ -5,8 +5,7 @@
   "main": "api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node src/server.js/",
-    "vercel-build": "echo hello"
+    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node src/server.js/"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

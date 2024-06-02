@@ -1,3 +1,4 @@
+const sql = require("mssql");
 var bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 require('dotenv').config();

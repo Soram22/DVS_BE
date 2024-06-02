@@ -1,6 +1,8 @@
 var bcrypt = require('bcryptjs');
 var config = require('../config/dbconfig');
+const sql = require("mssql");
 const salt = bcrypt.genSaltSync(10);
+
 
 let checkUserName = (username) => {
     return new Promise(async (resolve, reject) => {
